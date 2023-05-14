@@ -48,8 +48,7 @@ public class Teacher extends User{
             System.out.print("> ");
             
             Session session = Session.getSession();
-            int choice = session.inputScanner.nextInt();
-            session.inputScanner.nextLine();  // clear the newline left by nextInt()
+            int choice = session.readUserChoice();
     
             switch (choice) {
                 case 1:
@@ -57,8 +56,7 @@ public class Teacher extends User{
                     boolean backToMenu = false;
                     do {
                         System.out.print("> "); // Takes index to display list of students
-                        int courseIndex = session.inputScanner.nextInt() - 1;
-                        session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                        int courseIndex = session.readUserChoice() - 1;
                         if (courseIndex < 0 || courseIndex >= assignedCourses.size()) {
                             System.out.println("Invalid course index. Please try again.");
                             continue;
@@ -69,20 +67,17 @@ public class Teacher extends User{
                         int back = 1;
                         do {
                             System.out.println("1: Remove Student   2: Back");
-                            int choice2 = session.inputScanner.nextInt();
-                            session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                            int choice2 = session.readUserChoice();
                             switch(choice2){
                                 case 1: //Removes student from a course
                                     System.out.print("Index of Student to be removed: ");
-                                    int studentIndex = session.inputScanner.nextInt() - 1;
-                                    session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                                    int studentIndex = session.readUserChoice() - 1;
                                     removeStudentFromCourse(selectedCourse, studentIndex);
                                     System.out.println("Press 0 to go back.");
                                     System.out.print("> ");
-                                    int choice3 = session.inputScanner.nextInt();
+                                    int choice3 = session.readUserChoice();
                                     if (choice3 == 0) back = 0;
                                     else System.out.println("Invalid choice. Please try again.");
-                                    backToMenu = true;
                                 case 2:
                                     back = 0;
                                     backToMenu = true;

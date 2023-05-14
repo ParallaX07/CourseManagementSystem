@@ -49,8 +49,7 @@ public class Student extends User {
             System.out.println("1: Add Course\n2: View Courses\n3: Remove Course\n4: Back");
             System.out.print("> ");
             Session session = Session.getSession();
-            int choice = session.inputScanner.nextInt();
-            session.inputScanner.nextLine();  // clear the newline left by nextInt()
+            int choice = session.readUserChoice();
 
             switch (choice) {
                 case 1:
@@ -60,8 +59,7 @@ public class Student extends User {
                         System.out.println((i + 1) + ": " + courseList[i].getCourseName() + "." + courseList[i].getSection());
                     }
                     System.out.print("Index of the Course to be added: ");
-                    int indexToAdd = session.inputScanner.nextInt() - 1;
-                    session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                    int indexToAdd = session.readUserChoice() - 1;
                     addCourse(courseList[indexToAdd]);
                     break;
                 case 2:
@@ -73,8 +71,7 @@ public class Student extends User {
                         System.out.println((i + 1) + ": " + enrolledCourses.get(i).getCourseName());
                     }
                     System.out.print("Index of Course to be removed: ");
-                    int indexToRemove = session.inputScanner.nextInt() - 1;
-                    session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                    int indexToRemove = session.readUserChoice() - 1;
                     removeCourse(enrolledCourses.get(indexToRemove));
                     break;
                 case 4:
@@ -89,8 +86,12 @@ public class Student extends User {
 	public void viewCourses() {
         // Display enrolled courses
         System.out.println("Enrolled Courses:");
-        for (int i = 0; i < enrolledCourses.size(); i++) {
-            System.out.println((i + 1) + ": " + enrolledCourses.get(i).getCourseName() + "." + enrolledCourses.get(i).getSection());
+        if (enrolledCourses.isEmpty()) {
+            System.out.println("No courses to show.");
+        }
+        else {    for (int i = 0; i < enrolledCourses.size(); i++) {
+                System.out.println((i + 1) + ": " + enrolledCourses.get(i).getCourseName() + "." + enrolledCourses.get(i).getSection());
+            }
         }
     }
 

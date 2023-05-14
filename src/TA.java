@@ -45,8 +45,7 @@ public class TA extends User{
             System.out.println("1: View Courses\n2: Back");
             System.out.print("> ");
             Session session = Session.getSession();
-            int choice = session.inputScanner.nextInt();
-            session.inputScanner.nextLine();  // clear the newline left by nextInt()
+            int choice = session.readUserChoice();
 
             switch (choice) {
                 case 1:
@@ -54,8 +53,7 @@ public class TA extends User{
                     boolean backToMenu = false;
                     do{
                         System.out.print("> "); // Takes index to display list of students
-                        int courseIndex = session.inputScanner.nextInt() - 1;
-                        session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                        int courseIndex = session.readUserChoice() - 1;
                         if (courseIndex < 0 || courseIndex >= assignedCourses.size()) {
                             System.out.println("Invalid course index. Please try again.");
                             continue;
@@ -63,7 +61,7 @@ public class TA extends User{
                         Course selectedCourse = assignedCourses.get(courseIndex);
                         viewStudents(selectedCourse);
                         System.out.println("Press 0 to go back");
-                        int choice2 = session.inputScanner.nextInt();
+                        int choice2 = session.readUserChoice();
                         if (choice2 == 0) backToMenu = true;
                     }while(!backToMenu);
                     break;
