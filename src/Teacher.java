@@ -15,11 +15,30 @@ public class Teacher extends User{
         this.assignedCourses.add(course);
     }
 
-    // Remove a student from a specific course
-    public void removeStudentFromCourse(Student student, Course course) {
+    //Displays students in a particular course
+    public void viewStudents(Course course) {
+        ArrayList<Student> studentList = course.getStudentList();
         if (this.assignedCourses.contains(course)) {
-            course.removeStudent(student);
+            if (studentList.isEmpty()) {
+                System.out.println("No students enrolled in this course.");
+                return;
+            }
+            for (int i = 0; i < studentList.size(); i++) {
+                System.out.println((i + 1) + ". " + "Name: " +studentList.get(i).getName() + ", ID: " + studentList.get(i).getStudentID());
+            }
         }
+    }
+
+    //Removes student from a course
+    public void removeStudentFromCourse(Course course, int studentIndex) {
+        ArrayList<Student> studentList = course.getStudentList();
+        if (studentIndex < 0 || studentIndex >= studentList.size()) {
+            System.out.println("Invalid student index. Please try again.");
+            return;
+        }
+        Student selectedStudent = studentList.get(studentIndex);
+        course.removeStudent(selectedStudent);
+        System.out.println("Student " + selectedStudent.getName() + " removed from " + course.getCourseName() + "." + course.getSection() + " successfully.");
     }
 	
 	@Override
@@ -34,10 +53,6 @@ public class Teacher extends User{
     
             switch (choice) {
                 case 1:
-                    if (assignedCourses.isEmpty()) {
-                        System.out.println("No courses assigned.");
-                        break;
-                    }
                     viewCourses();
                     boolean backToMenu = false;
                     do {
@@ -50,38 +65,33 @@ public class Teacher extends User{
                         }
                         Course selectedCourse = assignedCourses.get(courseIndex);
     
-                        // Display students in the selected course and get the index of the student to be removed
-                        ArrayList<Student> studentList = selectedCourse.getStudentList();
-                        if (studentList.isEmpty()) {
-                            System.out.println("No students enrolled in this course.");
-                            break;
-                        }
-                        for (int i = 0; i < studentList.size(); i++) {
-                            System.out.println((i + 1) + ": " + studentList.get(i).getName());
-                        }
-                        System.out.println("1: Remove Student   2: Back");
-                        int choice2 = session.inputScanner.nextInt();
-                        session.inputScanner.nextLine();  // clear the newline left by nextInt()
-                        switch(choice2){
-                            case 1: 
-                                System.out.print("Index of Student to be removed: ");
-                                int studentIndex = session.inputScanner.nextInt() - 1;
-                                session.inputScanner.nextLine();  // clear the newline left by nextInt()
-                                if (studentIndex < 0 || studentIndex >= studentList.size()) {
-                                    System.out.println("Invalid student index. Please try again.");
-                                    continue;
-                                }
-                                Student selectedStudent = studentList.get(studentIndex);
-                                selectedCourse.removeStudent(selectedStudent);
-                                System.out.println("Student " + selectedStudent.getName() + " removed from " + selectedCourse.getCourseName());
-                                break;
-                            case 2:
-                                backToMenu = true;
-                                break;
-                            default:
-                                System.out.println("Invalid choice. Please try again.");
-                                break;
-                        }
+                        viewStudents(selectedCourse);
+                        int back = 1;
+                        do {
+                            System.out.println("1: Remove Student   2: Back");
+                            int choice2 = session.inputScanner.nextInt();
+                            session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                            switch(choice2){
+                                case 1: //Removes student from a course
+                                    System.out.print("Index of Student to be removed: ");
+                                    int studentIndex = session.inputScanner.nextInt() - 1;
+                                    session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                                    removeStudentFromCourse(selectedCourse, studentIndex);
+                                    System.out.println("Press 0 to go back.");
+                                    System.out.print("> ");
+                                    int choice3 = session.inputScanner.nextInt();
+                                    if (choice3 == 0) back = 0;
+                                    else System.out.println("Invalid choice. Please try again.");
+                                    backToMenu = true;
+                                case 2:
+                                    back = 0;
+                                    backToMenu = true;
+                                    break;
+                                default:
+                                    System.out.println("Invalid choice. Please try again.");
+                                    break;
+                            }
+                        } while(back!= 0);
                     } while (!backToMenu);
                     break;
                 case 2:
@@ -92,11 +102,15 @@ public class Teacher extends User{
             }
         }
     }    
-    @Override
     public void viewCourses() {
         // Display assigned courses
-        for (int i = 0; i < assignedCourses.size(); i++) {
-            System.out.println((i + 1) + ": " + assignedCourses.get(i).getCourseName() + "." + assignedCourses.get(i).getSection());
+        if (assignedCourses.isEmpty()) {
+            System.out.println("No courses assigned.");
+        }
+        else{
+            for (int i = 0; i < assignedCourses.size(); i++) {
+                System.out.println((i + 1) + ": " + assignedCourses.get(i).getCourseName() + "." + assignedCourses.get(i).getSection());
+            }
         }
     }
 
