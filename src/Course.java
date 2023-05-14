@@ -17,6 +17,7 @@ public class Course {
         this.teachingAssistant = teachingAssistant;
         this.students = new ArrayList<>();
         this.teacher.addCourse(this);
+        this.teachingAssistant.addCourse(this);
     }
 
     // Add a student to the course

@@ -25,7 +25,19 @@ public class TA extends User{
         return this.assignedCourses;
     }
 
-    // other methods specific to teaching assistants
+    //Displays students in a particular course
+    public void viewStudents(Course course) {
+        ArrayList<Student> studentList = course.getStudentList();
+        if (this.assignedCourses.contains(course)) {
+            if (studentList.isEmpty()) {
+                System.out.println("No students enrolled in this course.");
+                return;
+            }
+            for (int i = 0; i < studentList.size(); i++) {
+                System.out.println((i + 1) + ". " + "Name: " +studentList.get(i).getName() + ", ID: " + studentList.get(i).getStudentID());
+            }
+        }
+    }
 	
 	@Override
     public boolean handleActions() {
@@ -39,6 +51,21 @@ public class TA extends User{
             switch (choice) {
                 case 1:
                     viewCourses();
+                    boolean backToMenu = false;
+                    do{
+                        System.out.print("> "); // Takes index to display list of students
+                        int courseIndex = session.inputScanner.nextInt() - 1;
+                        session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                        if (courseIndex < 0 || courseIndex >= assignedCourses.size()) {
+                            System.out.println("Invalid course index. Please try again.");
+                            continue;
+                        }
+                        Course selectedCourse = assignedCourses.get(courseIndex);
+                        viewStudents(selectedCourse);
+                        System.out.println("Press 0 to go back");
+                        int choice2 = session.inputScanner.nextInt();
+                        if (choice2 == 0) backToMenu = true;
+                    }while(!backToMenu);
                     break;
                 case 2:
                     return true;  // logout
@@ -49,14 +76,17 @@ public class TA extends User{
         }
     }
 
-    @Override
     public void viewCourses() {
         // Display assigned courses
-        for (int i = 0; i < assignedCourses.size(); i++) {
-            System.out.println((i + 1) + ": " + assignedCourses.get(i).getCourseName());
+        if (assignedCourses.isEmpty()) {
+            System.out.println("No courses assigned.");
+        }
+        else{
+            for (int i = 0; i < assignedCourses.size(); i++) {
+                System.out.println((i + 1) + ": " + assignedCourses.get(i).getCourseName() + "." + assignedCourses.get(i).getSection());
+            }
         }
     }
-
 
     public String getAssistantID() {
         return this.assistantID;

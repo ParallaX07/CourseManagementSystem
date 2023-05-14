@@ -24,11 +24,13 @@ public class Student extends User {
                 return;
             }
         }
-
-        // If not, add the course
+    
+        // If not, add the course to the student's list of courses and add the student to the course
         enrolledCourses.add(course);
+        course.addStudent(this);  // add this line
         System.out.println("You have been enrolled in " + course.getCourseName() + "." + course.getSection() + " successfully!");
     }
+    
 
     // Remove a course from the student's enrolled courses
     public void removeCourse(Course course) {
@@ -83,7 +85,7 @@ public class Student extends User {
             }
         }
     }
-    @Override
+
 	public void viewCourses() {
         // Display enrolled courses
         System.out.println("Enrolled Courses:");
