@@ -22,7 +22,7 @@ public class Course {
 
     // Add a student to the course
     public void addStudent(Student student) {
-        if (students.size() < capacity) {
+        if (students.size() < capacity && !students.contains(student)) {
             this.students.add(student);
         } else {
             System.out.println("This course is full.");

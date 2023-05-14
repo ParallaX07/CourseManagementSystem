@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Session {
@@ -5,6 +6,20 @@ public class Session {
     private User[] userList;
     private Course[] courseList;
     public Scanner inputScanner;
+
+    public int readUserChoice() {
+        int choice = -1;
+        while (choice == -1) {
+            try {
+                choice = this.inputScanner.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Invalid input. Please enter a number.");
+                this.inputScanner.nextLine(); // discard the invalid input
+            }
+        }
+        this.inputScanner.nextLine();  // clear the newline left by nextInt()
+        return choice;
+    }
 
     private Session() {
         this.inputScanner = new Scanner(System.in);
