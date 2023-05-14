@@ -62,6 +62,7 @@ public class Teacher extends User{
                         System.out.println("1: Remove Student   2: Back");
                         int choice2 = session.inputScanner.nextInt();
                         session.inputScanner.nextLine();  // clear the newline left by nextInt()
+                        //Menu after selecting a course
                         switch(choice2){
                             case 1: 
                                 System.out.print("Index of Student to be removed: ");
