@@ -16,8 +16,8 @@ public class Course {
         this.teacher = teacher;
         this.teachingAssistant = teachingAssistant;
         this.students = new ArrayList<>();
-        this.teacher.addCourse(this);
-        this.teachingAssistant.addCourse(this);
+        this.teacher.setEnrolledCourses(this);
+        this.teachingAssistant.setEnrolledCourses(this);
     }
 
     // Add a student to the course
@@ -44,7 +44,7 @@ public class Course {
             return;
         }
         for (int i = 0; i < this.students.size(); i++) {
-            System.out.println((i + 1) + ". " + "Student Name: " + this.students.get(i).getName() + ", Student ID: " + this.students.get(i).getStudentID());
+            System.out.println((i + 1) + ". " + "Student Name: " + this.students.get(i).getName() + ", Student ID: " + this.students.get(i).getUserID());
         }
     }
 

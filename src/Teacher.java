@@ -1,18 +1,7 @@
-import java.util.ArrayList;
-
 public class Teacher extends User{
-    private String teacherID;
-    private ArrayList<Course> assignedCourses;
 
     public Teacher(String email, String password, String name, String teacherID) {
-        super(email, password, name);
-        this.teacherID = teacherID;
-        this.assignedCourses = new ArrayList<>();
-    }
-
-    // Add a course to the teacher's assigned courses
-    public void addCourse(Course course) {
-        this.assignedCourses.add(course);
+        super(email, password, name, teacherID);
     }
 
 	
@@ -27,16 +16,16 @@ public class Teacher extends User{
     
             switch (choice) {
                 case 1:
-                    CourseManagement.viewCourses(this.assignedCourses);
+                    CourseManagement.viewCourses(getEnrolledCourses());
                     boolean backToMenu = false;
                     do {
                         System.out.print("> "); // Takes index to display list of students
                         int courseIndex = session.readUserChoice() - 1;
-                        if (courseIndex < 0 || courseIndex >= assignedCourses.size()) {
+                        if (courseIndex < 0 || courseIndex >= getEnrolledCourses().size()) {
                             System.out.println("Invalid course index. Please try again.");
                             break;
                         }
-                        Course selectedCourse = assignedCourses.get(courseIndex);
+                        Course selectedCourse = getEnrolledCourses().get(courseIndex);
     
                         selectedCourse.viewStudentList();
                         int back = 1;
@@ -79,14 +68,5 @@ public class Teacher extends User{
                     break;
             }
         }
-    }    
-
-    public String getTeacherID() {
-        return this.teacherID;
-    }
-    
-    // Get a list of the teacher's assigned courses
-    public ArrayList<Course> getAssignedCourses() {
-        return this.assignedCourses;
-    }
+    }   
 }
