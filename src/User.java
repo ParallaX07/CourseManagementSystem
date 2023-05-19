@@ -1,9 +1,9 @@
 public abstract class User implements Action{
-    protected String email;
-    protected String password;
-    protected String name;
+    private String email;
+    private String password;
+    private String name;
 
-    public User(String email, String password, String name) {
+    protected User(String email, String password, String name) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -21,5 +21,4 @@ public abstract class User implements Action{
     public String getName() {
         return this.name;
     }
-
 }

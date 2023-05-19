@@ -3,8 +3,8 @@ import java.util.Scanner;
 
 public class Session {
     private static Session session = null;
-    private User[] userList;
-    private Course[] courseList;
+    private User[] userList = new User[7];;
+    private Course[] courseList = new Course[6];;
     public Scanner inputScanner;
 
     public int readUserChoice() {
@@ -28,7 +28,6 @@ public class Session {
 
     private void createDatabase() {
         // Initialize userList
-        userList = new User[7];
         userList[0] = new Student("student_a@northsouth.edu", "password", "A", "S1", 3.4);
         userList[1] = new Student("student_b@northsouth.edu", "password", "B", "S2", 3.6);
         userList[2] = new Student("student_c@northsouth.edu", "password", "C", "S3", 3.2);
@@ -38,7 +37,6 @@ public class Session {
         userList[6] = new TA("assistant_b@northsouth.edu", "password", "B", "A2");
 
         // Initialize courseList
-        courseList = new Course[6];
         courseList[0] = new Course("Course A", 1, "A", (Teacher) userList[3], (TA) userList[5]);
         courseList[1] = new Course("Course A", 2, "A", (Teacher) userList[4], (TA) userList[5]);
         courseList[2] = new Course("Course A", 3, "B", (Teacher) userList[3], (TA) userList[6]);

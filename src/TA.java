@@ -24,20 +24,6 @@ public class TA extends User{
     public ArrayList<Course> getAssignedCourses() {
         return this.assignedCourses;
     }
-
-    //Displays students in a particular course
-    public void viewStudents(Course course) {
-        ArrayList<Student> studentList = course.getStudentList();
-        if (this.assignedCourses.contains(course)) {
-            if (studentList.isEmpty()) {
-                System.out.println("No students enrolled in this course.");
-                return;
-            }
-            for (int i = 0; i < studentList.size(); i++) {
-                System.out.println((i + 1) + ". " + "Name: " +studentList.get(i).getName() + ", ID: " + studentList.get(i).getStudentID());
-            }
-        }
-    }
 	
 	@Override
     public boolean handleActions() {
@@ -49,20 +35,24 @@ public class TA extends User{
 
             switch (choice) {
                 case 1:
-                    viewCourses();
+                    CourseManagement.viewCourses(this.assignedCourses);
                     boolean backToMenu = false;
                     do{
+                        System.out.println("Choose an index or Press 0 to go back.");
                         System.out.print("> "); // Takes index to display list of students
                         int courseIndex = session.readUserChoice() - 1;
-                        if (courseIndex < 0 || courseIndex >= assignedCourses.size()) {
+                        if (courseIndex == -1) backToMenu = true; // go back to menu
+                        else if (courseIndex < 0 || courseIndex >= assignedCourses.size()) {
                             System.out.println("Invalid course index. Please try again.");
                             continue;
                         }
-                        Course selectedCourse = assignedCourses.get(courseIndex);
-                        viewStudents(selectedCourse);
-                        System.out.println("Press 0 to go back");
-                        int choice2 = session.readUserChoice();
-                        if (choice2 == 0) backToMenu = true;
+                        else {
+                            Course selectedCourse = assignedCourses.get(courseIndex);
+                            selectedCourse.viewStudentList();
+                            System.out.println("Press 0 to go back");
+                            int choice2 = session.readUserChoice();
+                            if (choice2 == 0) backToMenu = true;
+                        }
                     }while(!backToMenu);
                     break;
                 case 2:
@@ -70,18 +60,6 @@ public class TA extends User{
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     break;
-            }
-        }
-    }
-
-    public void viewCourses() {
-        // Display assigned courses
-        if (assignedCourses.isEmpty()) {
-            System.out.println("No courses assigned.");
-        }
-        else{
-            for (int i = 0; i < assignedCourses.size(); i++) {
-                System.out.println((i + 1) + ": " + assignedCourses.get(i).getCourseName() + "." + assignedCourses.get(i).getSection());
             }
         }
     }
