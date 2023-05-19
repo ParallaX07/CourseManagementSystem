@@ -32,7 +32,7 @@ A teaching assistant can perform the following actions:
 
 1. View their assigned courses.
 2. View students enrolled in their courses.
-3. Log out.
+3. Go back to login menu. 
 
 ### Student
 
@@ -41,7 +41,7 @@ A student can perform the following actions:
 1. Enroll in a course.
 2. View their enrolled courses.
 3. Remove a course.
-4. Log out.
+4. Go back to login menu. 
 
 ### Default Database
 
