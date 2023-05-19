@@ -29,17 +29,24 @@ public class Course {
         }
     }
 
-    // Remove a student from the course
     public void removeStudent(Student student) {
-        this.students.remove(student);
+        if (students.contains(student)) {
+            students.remove(student);
+        } else {
+            System.out.println("Student " + student.getName() + " is not enrolled in " + courseName + "." + section + ".");
+        }
     }
 
-    // Get a list of students in the course
-    public ArrayList<Student> getStudentList() {
-        return this.students;
+    //Displays students in a particular course
+    public void viewStudentList() {
+        if (this.students.isEmpty()) {
+            System.out.println("No students enrolled in this course.");
+            return;
+        }
+        for (int i = 0; i < this.students.size(); i++) {
+            System.out.println((i + 1) + ". " + "Student Name: " + this.students.get(i).getName() + ", Student ID: " + this.students.get(i).getStudentID());
+        }
     }
-
-    // other methods specific to the course
 
     public String getCourseName() {
         return this.courseName;
