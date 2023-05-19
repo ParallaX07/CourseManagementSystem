@@ -1,20 +1,9 @@
-import java.util.ArrayList;
-
 public class Student extends User {
-    private String studentID;
     private double CGPA;
-    private ArrayList<Course> enrolledCourses;
 
     public Student(String email, String password, String name, String studentID, double CGPA) {
-        super(email, password, name);
-        this.studentID = studentID;
+        super(email, password, name, studentID);
         this.CGPA = CGPA;
-        this.enrolledCourses = new ArrayList<>();
-    }
-
-    // Get a list of the student's enrolled courses
-    public ArrayList<Course> getEnrolledCourses() {
-        return this.enrolledCourses;
     }
 
     // Implement the handleActions() method from the Action interface
@@ -44,7 +33,7 @@ public class Student extends User {
                     break;
                 case 2:
                 System.out.println("Enrolled Courses:");
-                    CourseManagement.viewCourses(this.enrolledCourses);
+                    CourseManagement.viewCourses(getEnrolledCourses());
                     System.out.println();
 
                     System.out.println("1: Remove Course   2: Back");
@@ -53,10 +42,10 @@ public class Student extends User {
                     switch(choice2){
                         case 1:
                             // Display enrolled courses and get the index of the course to be removed
-                            CourseManagement.viewCourses(this.enrolledCourses);
+                            CourseManagement.viewCourses(getEnrolledCourses());
                             System.out.print("Index of Course to be removed: ");
                             int indexToRemove = session.readUserChoice() - 1;
-                            Course courseToRemove = enrolledCourses.get(indexToRemove);
+                            Course courseToRemove = getEnrolledCourses().get(indexToRemove);
                             CourseManagement.removeCourse(this, courseToRemove);
                             break;
                         case 2:
@@ -73,10 +62,6 @@ public class Student extends User {
                     break;
             }
         }
-    }
-
-    public String getStudentID() {
-        return this.studentID;
     }
 
     public double getCGPA() {
