@@ -32,7 +32,7 @@ A teaching assistant can perform the following actions:
 
 1. View their assigned courses.
 2. View students enrolled in their courses.
-3. Go back to login menu.
+3. Log out.
 
 ### Student
 
@@ -41,42 +41,42 @@ A student can perform the following actions:
 1. Enroll in a course.
 2. View their enrolled courses.
 3. Remove a course.
-4. Go back to login menu.
+4. Log out.
 
 ### Default Database
 
 **Students**
 
-| Email | Password | Student ID | Student Name | CGPA |
-| --- | --- | --- | --- | --- |
-| student_a@northsouth.edu | password | S1 | A | 3.4 |
-| student_b@northsouth.edu | password | S2 | B | 3.6 |
-| student_c@northsouth.edu | password | S3 | C | 3.2 |
+| Email                    | Password | Student ID | Student Name | CGPA |
+| ------------------------ | -------- | ---------- | ------------ | ---- |
+| student_a@northsouth.edu | password | S1         | A            | 3.4  |
+| student_b@northsouth.edu | password | S2         | B            | 3.6  |
+| student_c@northsouth.edu | password | S3         | C            | 3.2  |
 
 **Teachers**
 
-| Email | Password | Teacher ID | Teacher Name |
-| --- | --- | --- | --- |
-| teacher_a@northsouth.edu | password | T1 | A |
-| teacher_b@northsouth.edu | password | T2 | B |
+| Email                    | Password | Teacher ID | Teacher Name |
+| ------------------------ | -------- | ---------- | ------------ |
+| teacher_a@northsouth.edu | password | T1         | A            |
+| teacher_b@northsouth.edu | password | T2         | B            |
 
 **Assistants**
 
-| Email | Password | Assistant ID | Assistant Name |
-| --- | --- | --- | --- |
-| assistant_a@northsouth.edu | password | A1 | A |
-| assistant_b@northsouth.edu | password | A2 | B |
+| Email                      | Password | Assistant ID | Assistant Name |
+| -------------------------- | -------- | ------------ | -------------- |
+| assistant_a@northsouth.edu | password | A1           | A              |
+| assistant_b@northsouth.edu | password | A2           | B              |
 
 **Courses**
 
-| Index | Course Name | Section | Timing | Teacher | TA |
-| --- | --- | --- | --- | --- | --- |
-| 1 | Course A | 1 | A | T1 | A |
-| 2 | Course A | 2 | A | T2 | A |
-| 3 | Course A | 3 | B | T1 | B |
-| 4 | Course B | 1 | A | T1 | A |
-| 5 | Course C | 1 | B | T2 | A |
-| 6 | Course C | 2 | C | T1 | B |
+| Index | Course Name | Section | Timing | Teacher | TA  |
+| ----- | ----------- | ------- | ------ | ------- | --- |
+| 1     | Course A    | 1       | A      | T1      | A   |
+| 2     | Course A    | 2       | A      | T2      | A   |
+| 3     | Course A    | 3       | B      | T1      | B   |
+| 4     | Course B    | 1       | A      | T1      | A   |
+| 5     | Course C    | 1       | B      | T2      | A   |
+| 6     | Course C    | 2       | C      | T1      | B   |
 
 ## Usage
 
