@@ -92,9 +92,9 @@ This project is a console-based application. The `CourseManagement` class acts a
     
     - *Perform Actions*: Once logged in, you can perform actions specific to your user type. For instance, a Teacher can add a course, view their assigned courses, view students in their courses, and log out. A Student can enroll in a course, view their enrolled courses, remove a course, and log out. A TA can view their assigned courses, view students in their courses, and log out.
 
-    - *Logging Out and Switching Users*: If you wish to log out and log in as a different user, it is recommend to switch to the `Teacher` at the end. Only the `Teacher` can logout by choosing the logout option in the main menu, the other users can only go back to login screen.
+    - *Logging Out and Switching Users*: You can log out from all 3 user types and switch between them to see how the data changes and updates between them.
 
-4. **Stop the Application**: You can stop the application by simply closing the terminal or by using the interrupt command specific to your operating system (generally `Ctrl+C`) or through the `logout` option in the Teacher menu.
+4. **Stop the Application**: You can stop the application by simply closing the terminal or by using the interrupt command specific to your operating system (generally `Ctrl+C`).
 
 Please note that this project is a demonstration and does not persist data between sessions. Therefore, all changes you make during a session (such as adding courses or enrolling students) will be lost once the application is stopped.
 
