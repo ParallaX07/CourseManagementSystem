@@ -32,6 +32,7 @@ public class Course {
     public void removeStudent(Student student) {
         if (students.contains(student)) {
             students.remove(student);
+            student.getEnrolledCourses().remove(this);
         } else {
             System.out.println("Student " + student.getName() + " is not enrolled in " + courseName + "." + section + ".");
         }

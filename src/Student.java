@@ -8,7 +8,7 @@ public class Student extends User {
 
     // Implement the handleActions() method from the Action interface
     @Override
-    public boolean handleActions() {
+    public void handleActions() {
         while (true) {
             System.out.println("1: Add Course   2: View Courses     3: Back");
             System.out.print("> ");
@@ -56,7 +56,7 @@ public class Student extends User {
                     }
                     break;
                 case 3:
-                    return true;  // goBack
+                    return;  // goBack
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     break;

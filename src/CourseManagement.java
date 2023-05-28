@@ -13,10 +13,7 @@ public class CourseManagement {
             try {
                 User user = login(email, password);
 				if (user != null) {
-					boolean continueRunning = user.handleActions();
-					if (!continueRunning) {
-						break; // Exit the main loop if handleActions returned false.
-					}
+					user.handleActions();
 				}
             }
              catch (Exception e) {

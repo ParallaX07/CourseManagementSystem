@@ -1,3 +1,3 @@
 interface Action{
-    public boolean handleActions();
+    public void handleActions();
 }

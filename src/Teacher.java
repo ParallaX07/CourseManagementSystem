@@ -6,7 +6,7 @@ public class Teacher extends User{
 
 	
 	@Override
-    public boolean handleActions() {
+    public void handleActions() {
         while (true) {
             System.out.println("1: View Courses     2: Logout");
             System.out.print("> ");
@@ -31,6 +31,7 @@ public class Teacher extends User{
                         int back = 1;
                         do {
                             System.out.println("1: Remove Student   2: Back");
+                            System.out.print(">");
                             int choice2 = session.readUserChoice();
                             switch(choice2){
                                 case 1: //Removes student from a course
@@ -62,7 +63,7 @@ public class Teacher extends User{
                     } while (!backToMenu);
                     break;
                 case 2:
-                    return false;  // logout
+                    return;  // logout
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     break;

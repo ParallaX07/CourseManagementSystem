@@ -5,7 +5,7 @@ public class TA extends User{
     }
 	
 	@Override
-    public boolean handleActions() {
+    public void handleActions() {
         while (true) {
             System.out.println("1: View Courses\n2: Back");
             System.out.print("> ");
@@ -35,7 +35,7 @@ public class TA extends User{
                     }while(!backToMenu);
                     break;
                 case 2:
-                    return true;  // logout
+                    return;  // logout
                 default:
                     System.out.println("Invalid choice. Please try again.");
                     break;
